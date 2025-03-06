@@ -109,6 +109,59 @@
   gap: 1rem;
 }
 
+.player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 180px;
+  height: 60px;
+  background: #78db99;
+  border-radius: 15px;
+  padding: 10px 15px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.playerControls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.playButton {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #000;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  line-height: 1;
+}
+
+.playButton img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.timeDisplay {
+  font-size: 14px;
+  color: #000;
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
 @media (max-width: 768px) {
   .top, .bottom {
     height: auto;
@@ -154,5 +207,24 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+
+  .player {
+    width: 180px;
+    height: 50px;
+    padding: 8px 12px;
+  }
+  .playButton {
+    font-size: 24px;
+    width: 36px;
+    height: 36px;
+  }
+  .timeDisplay {
+    font-size: 12px;
+  }
+
+  .playButton img {
+    width: 20px;
+    height: 20px;
   }
 }

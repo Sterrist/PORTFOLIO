@@ -1,6 +1,60 @@
+'use client'
+
+import { useState, useEffect } from 'react';
 import styles from './page.module.css'
 
 export default function Page() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  useEffect(() => {
+    const audio = document.getElementById('audio');
+    
+    const updateTime = () => setCurrentTime(audio.currentTime);
+    const updateDuration = () => {
+      if (!isNaN(audio.duration)) {
+        setDuration(audio.duration);
+      }
+    };
+    
+    audio.addEventListener('timeupdate', updateTime);
+    audio.addEventListener('durationchange', updateDuration);
+    audio.addEventListener('loadeddata', updateDuration);
+
+    const handleEnd = () => {
+      audio.currentTime = 0;
+      setIsPlaying(false);
+    };
+
+    audio.addEventListener('ended', handleEnd);
+
+    updateDuration();
+
+    return () => {
+      audio.removeEventListener('timeupdate', updateTime);
+      audio.removeEventListener('durationchange', updateDuration);
+      audio.removeEventListener('loadeddata', updateDuration);
+      audio.removeEventListener('ended', handleEnd);
+    };
+  }, []);
+
+  const togglePlay = () => {
+    const audio = document.getElementById('audio');
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes}:${secs.toString().padStart(2, '0')}`;
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -8,11 +62,11 @@ export default function Page() {
           <h1 style={{fontSize: '150px'}}>STERRIST DEV </h1>
           <h2 style={{fontSize: '100px'}}>МНОГО КОДА</h2>
           <h3 style={{fontSize: '40px'}}>ЩЕПОТКУ ДИЗАЙНА</h3>
-          <h4 style={{fontSize: '20px'}}>МАЛО БАГОВ</h4>
+          <h4 style={{fontSize: '20px'}}>БЕЗ БАГОВ</h4>
         </div>
 
         <div className={styles.top_hello}>
-          <h1 style={{fontSize: '40px'}}>Hello, %NAME%!</h1>
+          <h1 style={{fontSize: '40px'}}>Привет, %NAME%!</h1>
           <h4>Меня зовут STERRIST, пишу код, пью чай и иногда сплю</h4>
           <h4>Делаю бек, ботов и фронт</h4>
           <h4>Люблю <a className='link' href="https://ru.wikipedia.org/wiki/Панна-котта" rel="noopener noreferrer" target="_blank" >панна коту</a></h4>
@@ -96,6 +150,25 @@ export default function Page() {
           </a>
         </div>
       </footer>
+
+      <div className={styles.player}>
+        <audio id="audio" src="/music.mp3"></audio>
+        <div className={styles.playerControls}>
+          <button className={styles.playButton} onClick={togglePlay}>
+            <img 
+              src={isPlaying ? "/pause.png" : "/play.png"} 
+              alt={isPlaying ? "Pause" : "Play"}
+              width={24}
+              height={24}
+            />
+          </button>
+          <div className={styles.timeDisplay}>
+            <span>{formatTime(currentTime)}</span>
+            <span>/</span>
+            <span>{formatTime(duration)}</span>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

@@ -56,7 +56,7 @@ export default function Page() {
               <b>Сайт ЧоБОТ</b>
               <span>Сайт для магазина ЧоБОТ</span>
             </a>
-            <a className={styles.portfolio_item} href="https://cho-bot.ru" rel="noopener noreferrer" target="_blank" >
+            <a className={styles.portfolio_item} href="https://github.com/Sterrist/PORTFOLIO" rel="noopener noreferrer" target="_blank" >
               <b>Портфолио</b>
               <span>Вы кстати сейчас смотрите на него</span>
             </a>

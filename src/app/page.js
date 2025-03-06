@@ -7,6 +7,8 @@ export default function Page() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [animateTitle, setAnimateTitle] = useState(false);
+  const [animateHello, setAnimateHello] = useState(false);
 
   useEffect(() => {
     const audio = document.getElementById('audio');
@@ -31,11 +33,17 @@ export default function Page() {
 
     updateDuration();
 
+    // Запускаем анимацию заголовка при монтировании
+    setAnimateTitle(true);
+    // Через 500ms запускаем анимацию приветствия
+    const timer = setTimeout(() => setAnimateHello(true), 500);
+
     return () => {
       audio.removeEventListener('timeupdate', updateTime);
       audio.removeEventListener('durationchange', updateDuration);
       audio.removeEventListener('loadeddata', updateDuration);
       audio.removeEventListener('ended', handleEnd);
+      clearTimeout(timer);
     };
   }, []);
 
@@ -58,14 +66,14 @@ export default function Page() {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <div className={styles.top_title}>
+        <div className={`${styles.top_title} ${animateTitle ? styles.visible : ''}`}>
           <h1 style={{fontSize: '150px'}}>STERRIST DEV </h1>
           <h2 style={{fontSize: '100px'}}>МНОГО КОДА</h2>
           <h3 style={{fontSize: '40px'}}>ЩЕПОТКУ ДИЗАЙНА</h3>
           <h4 style={{fontSize: '20px'}}>БЕЗ БАГОВ</h4>
         </div>
 
-        <div className={styles.top_hello}>
+        <div className={`${styles.top_hello} ${animateHello ? styles.visible : ''}`}>
           <h1 style={{fontSize: '40px'}}>Привет, %NAME%!</h1>
           <h4>Меня зовут STERRIST, пишу код, пью чай и иногда сплю</h4>
           <h4>Делаю бек, ботов и фронт</h4>

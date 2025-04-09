@@ -1,11 +1,9 @@
 .top {
-  background: linear-gradient(to top, #ca8530, #F02F34);
   height: 100vh;
   color: #e7b270;
 }
 
 .bottom {
-  background: linear-gradient(to bottom, #ca8530, #F02F34);
   height: 100vh;
   color: #e7b270;
   font-size: 2rem;
@@ -109,12 +107,12 @@
 }
 
 .footer {
-  background: linear-gradient(to top, #ca8530, #F02F34);
   height: 300px;
   color: #e7b270;
   font-size: 2rem;
   font-weight: 700;
   padding: 2rem;
+  margin-top: 100px;
 }
 
 .footer_links {

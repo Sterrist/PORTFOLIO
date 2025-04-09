@@ -93,6 +93,10 @@ export default function Page() {
               <b>ЧоБОТ</b>
               <span>Продажа доната в наши любимые игры</span>
             </a>
+            <a className={styles.portfolio_item} href="https://t.me/spacegold_robot" rel="noopener noreferrer" target="_blank" >
+              <b>SpaceGold</b>
+              <span>Дает возможность всегда "быть при деньгах"</span>
+            </a>
             <a className={styles.portfolio_item} href="https://t.me/twinkleonedefender_bot" rel="noopener noreferrer" target="_blank" >
               <b>Twinkle Defender</b>
               <span>Модерация чатов агентства TwinkleOne</span>
@@ -115,8 +119,12 @@ export default function Page() {
 
           <div className={styles.portfolio_items}>
             <a className={styles.portfolio_item} href="https://cho-bot.ru" rel="noopener noreferrer" target="_blank" >
-              <b>Сайт ЧоБОТ</b>
+              <b>ЧоБОТ</b>
               <span>Сайт для магазина ЧоБОТ</span>
+            </a>
+            <a className={styles.portfolio_item} href="https://spacegold.fun" rel="noopener noreferrer" target="_blank" >
+              <b>SpaceGold</b>
+              <span>Сайт для SpaceGold</span>
             </a>
             <a className={styles.portfolio_item} href="https://github.com/Sterrist/PORTFOLIO" rel="noopener noreferrer" target="_blank" >
               <b>Портфолио</b>
